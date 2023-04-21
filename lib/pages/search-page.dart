@@ -1,9 +1,10 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({super.key});
+  const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -25,10 +26,9 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
         ),
         Container(
           width: double.infinity,
-          height: 45,
-          padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+          height: 60,
+          padding: EdgeInsets.fromLTRB(35, 20, 35, 0),
           child: TextField(
-            obscureText: true,
             cursorColor: Color.fromARGB(255, 130, 93, 247),
             decoration: InputDecoration(
               labelText: 'Search...',
@@ -46,6 +46,14 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
             ),
           ),
         ),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 125, 0, 0),
+          alignment: Alignment.center,
+          child: Lottie.network(
+              'https://assets2.lottiefiles.com/packages/lf20_6rwtym6l.json',
+              height: 250
+          ),
+        )
       ],
     );
   }
