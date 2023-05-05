@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pos_4ahif_shop/pages/cart-page.dart';
 import 'package:pos_4ahif_shop/pages/home-page.dart';
+import 'package:pos_4ahif_shop/pages/login-page.dart';
 import 'package:pos_4ahif_shop/pages/profile-page.dart';
 import 'package:pos_4ahif_shop/pages/search-page.dart';
 
@@ -21,21 +22,24 @@ class ShopApp extends StatelessWidget {
       theme: ThemeData(
         backgroundColor: Colors.white
       ),
-      home: const MyHomePage(title: 'Home - Spooko'),
+      home: MyHomePage(title: 'Home - Spooko', loggedIn: true),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
   final String title;
+  bool loggedIn;
+
+  MyHomePage({super.key, required this.title, required this.loggedIn});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool loggedIn = true;
 
   final _pages = <Widget>[
     HomePage(),
@@ -48,6 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (loggedIn == false) {
+      return LoginPage();
+    }
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('lib/assets/logo.jpeg', fit: BoxFit.cover, height: 50),

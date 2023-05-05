@@ -1,0 +1,145 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(0, 200, 0, 0),
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Image.asset('lib/assets/logo.png', width: 300,),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 45, 20, 0),
+                  child: TextField(
+                    cursorColor: Color.fromARGB(255, 130, 93, 247),
+                    decoration: InputDecoration(
+                      labelText: 'E-Mail / Username',
+                      fillColor: Colors.white,
+                      labelStyle:
+                      const TextStyle(color: Color.fromARGB(255, 130, 93, 247)),
+                      border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      focusColor: const Color.fromARGB(255, 130, 93, 247),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 130, 93, 247), width: 2.0),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+                  child: TextField(
+                    cursorColor: Color.fromARGB(255, 130, 93, 247),
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      fillColor: Colors.white,
+                      labelStyle:
+                      const TextStyle(color: Color.fromARGB(255, 130, 93, 247)),
+                      border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                      focusColor: const Color.fromARGB(255, 130, 93, 247),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromARGB(255, 130, 93, 247), width: 2.0),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 80,
+                  padding: const EdgeInsets.all(20),
+                  child: ElevatedButton(
+                      onPressed: (){
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shadowColor: const Color.fromARGB(255, 130, 93, 247),
+                        backgroundColor: const Color.fromARGB(255, 130, 93, 247),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)
+                        )
+                      ),
+                      child: const Text('Log In')
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  child: Text('Other login methods:'),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 60,
+                      child: ElevatedButton(
+                        onPressed: () {  },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          shadowColor: const Color.fromARGB(255, 130, 93, 247),
+                        ),
+                        child: Image.asset('lib/assets/logmethods-pics/apple-logo-black-outlined.png'),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      width: 60,
+                      child: ElevatedButton(
+                        onPressed: () {  },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          shadowColor: const Color.fromARGB(255, 130, 93, 247),
+                        ),
+                        child: Image.asset('lib/assets/logmethods-pics/google-logo-black-outlined.png'),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      width: 60,
+                      child: ElevatedButton(
+                        onPressed: () {  },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          shadowColor: const Color.fromARGB(255, 130, 93, 247),
+                        ),
+                        child: Image.asset('lib/assets/logmethods-pics/facebook-logo-black-outlined.png'),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.transparent,
+                        foregroundColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
+                      ),
+                      child: const Text(
+                        'Forgot password?',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 130, 93, 247),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+  }
+
+}
