@@ -7,6 +7,10 @@ import 'package:pos_4ahif_shop/pages/home-page.dart';
 import 'package:pos_4ahif_shop/pages/login-page.dart';
 import 'package:pos_4ahif_shop/pages/profile-page.dart';
 import 'package:pos_4ahif_shop/pages/search-page.dart';
+import 'package:pos_4ahif_shop/provider/cart-provider.dart';
+import 'package:pos_4ahif_shop/provider/order-provider.dart';
+import 'package:pos_4ahif_shop/widgets/UI/spooko-appbar.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const ShopApp());
@@ -17,13 +21,19 @@ class ShopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        backgroundColor: Colors.white
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
+        ChangeNotifierProvider<OrderProvider>(create: (_) => OrderProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          backgroundColor: Colors.white
+        ),
+        home: MyHomePage(title: 'Home - Spooko', loggedIn: true),
+        debugShowCheckedModeBanner: false,
       ),
-      home: MyHomePage(title: 'Home - Spooko', loggedIn: true),
-      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -56,15 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return LoginPage();
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset('lib/assets/logo.jpeg', fit: BoxFit.cover, height: 50),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15)
-        ),
-        shadowColor: Colors.transparent,
-      ),
+      appBar: returnSpookoAppBar(),
       body: Center(
         child: _pages.elementAt(_selectedIndex),
       ),

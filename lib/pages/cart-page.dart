@@ -19,6 +19,18 @@ class CartPage extends StatelessWidget {
           ),
         ),
         CartList(),
+        Row(
+          children: [
+            Container(
+                alignment: Alignment.bottomLeft,
+                child: Text('Total: ')
+            ),
+            Container(
+              alignment: Alignment.bottomRight,
+                child: Text('' + CartList.totalprice.toString() + ' €'),
+            )
+          ],
+        ),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,
@@ -27,7 +39,9 @@ class CartPage extends StatelessWidget {
               height: 50,
               padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 38, 38, 38),
                   shape: RoundedRectangleBorder(

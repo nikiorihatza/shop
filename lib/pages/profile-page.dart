@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pos_4ahif_shop/functions/login-functions.dart';
+import 'package:pos_4ahif_shop/functions/routes.dart';
 
 class ProfilePage extends StatelessWidget {
   String title = "PROFILE";
@@ -59,6 +60,9 @@ class ProfilePage extends StatelessWidget {
               trailing: const Icon(
                 Icons.arrow_forward_ios_rounded
               ),
+              onTap: () {
+                Navigator.of(context).push(createRouteToOwnProfile());
+              },
             ),
           ),
         ),
@@ -76,7 +80,9 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                       'FAVORITES'
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(createRouteToFavorites());
+                  },
                 ),
               ),
               Card(
@@ -89,7 +95,9 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                     'MY ORDERS'
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(createRouteToMyOrders());
+                  },
                 ),
               ),
               Card(
@@ -102,7 +110,9 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                       'SUPPORT'
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(createRouteToSupport());
+                  },
                 ),
               ),
               Card(
@@ -115,7 +125,9 @@ class ProfilePage extends StatelessWidget {
                   title: Text(
                       'SETTINGS'
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(createRouteToSettings());
+                  },
                 ),
               ),
             ],

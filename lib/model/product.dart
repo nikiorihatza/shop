@@ -7,10 +7,22 @@ class Product {
   double price;
   String description;
   String image;
+  String storage;
+  String color;
   int rating;
   int category;
+  bool favorited;
 
-  Product({required this.id, required this.name, required this.price, required this.description, required this.image, required this.rating, required this.category});
+  Object categroisedObject;
+
+  Product({required this.id, required this.name, required this.price, required this.description, required this.image, required this.storage, required this.color, required this.rating, required this.category, required this.favorited, required this.categroisedObject});
+
+  bool equals(Product product) {
+    if (this.id == product.id && this.color == product.color && this.storage == product.storage) {
+      return true;
+    }
+      return false;
+  }
 
   @override
   bool operator ==(Object other) =>

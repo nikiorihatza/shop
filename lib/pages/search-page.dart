@@ -31,6 +31,7 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
           child: TextField(
             cursorColor: Color.fromARGB(255, 130, 93, 247),
             decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.never,
               labelText: 'Search...',
               fillColor: Colors.white,
               labelStyle:

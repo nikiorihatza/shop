@@ -4,18 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pos_4ahif_shop/functions/map-functions.dart';
+import 'package:pos_4ahif_shop/functions/routes.dart';
+import 'package:pos_4ahif_shop/provider/cart-provider.dart';
+import 'package:provider/provider.dart';
 
 import '../model/product.dart';
 
 class CartList extends StatelessWidget {
-  Map<Product,int> shoppingCart = Map();
-  List<CartProductWidget> widgetProducts = [];
-
   CartList({super.key});
+
+  static double totalprice = 0;
 
   @override
   Widget build(BuildContext context) {
-    if (widgetProducts.isEmpty) {
+    var shoppingCartProvider = Provider.of<CartProvider>(context, listen: true);
+    Map<Product,int> shoppingCart = shoppingCartProvider.cart;
+
+    if (shoppingCart.isEmpty) {
       return Column(
         children: <Widget>[
           const Center(
@@ -30,23 +35,15 @@ class CartList extends StatelessWidget {
     }
     return Expanded(
       child: ListView.builder(
+        itemCount: shoppingCart.length,
         itemBuilder: (BuildContext context, int index) {
+          totalprice += shoppingCart.keys.elementAt(index).price;
           return Card(
-            child: widgetProducts[index]
+            child: CartProductWidget(product: shoppingCart.keys.elementAt(index), amount: shoppingCart.values.elementAt(index))
           );
         },
       ),
     );
-  }
-
-  void addToShoppingCart(Product product) {
-    int newAmount = 1;
-
-    if (shoppingCart.containsKey(product)) {
-      newAmount += MapFunctions().getValue(shoppingCart, product).toString() as int;
-    }
-
-    widgetProducts.add(CartProductWidget(product: product, amount: newAmount));
   }
 }
 
@@ -59,6 +56,9 @@ class CartProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigator.of(context).push(createRouteToProduct(product));
+      },
       leading: Image.asset(product.image),
       title: Text(product.name),
       trailing: Text((product.price * amount).toString()),
