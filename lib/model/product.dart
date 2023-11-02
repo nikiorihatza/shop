@@ -4,6 +4,7 @@ class Product {
 
   int id;
   String name;
+  String producer;
   double price;
   String description;
   String image;
@@ -12,13 +13,25 @@ class Product {
   int rating;
   int category;
   bool favorited;
+  int inStock;
 
-  Object categroisedObject;
-
-  Product({required this.id, required this.name, required this.price, required this.description, required this.image, required this.storage, required this.color, required this.rating, required this.category, required this.favorited, required this.categroisedObject});
+  Product({
+    required this.id,
+    required this.name,
+    required this.producer,
+    required this.price,
+    required this.description,
+    required this.image,
+    required this.storage,
+    required this.color,
+    required this.rating,
+    required this.category,
+    required this.favorited,
+    required this.inStock
+  });
 
   bool equals(Product product) {
-    if (this.id == product.id && this.color == product.color && this.storage == product.storage) {
+    if (this.id == product.id && this.color == product.color) {
       return true;
     }
       return false;

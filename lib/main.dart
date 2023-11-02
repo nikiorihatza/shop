@@ -9,6 +9,7 @@ import 'package:pos_4ahif_shop/pages/profile-page.dart';
 import 'package:pos_4ahif_shop/pages/search-page.dart';
 import 'package:pos_4ahif_shop/provider/cart-provider.dart';
 import 'package:pos_4ahif_shop/provider/order-provider.dart';
+import 'package:pos_4ahif_shop/provider/productdata-provider.dart';
 import 'package:pos_4ahif_shop/widgets/UI/spooko-appbar.dart';
 import 'package:provider/provider.dart';
 
@@ -25,9 +26,10 @@ class ShopApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
         ChangeNotifierProvider<OrderProvider>(create: (_) => OrderProvider()),
+        ChangeNotifierProvider<ProductDataProvider>(create: (_) => ProductDataProvider())
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Spooko',
         theme: ThemeData(
           backgroundColor: Colors.white
         ),
@@ -71,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
         child: GNav(
           gap: 8,
           selectedIndex: _selectedIndex,

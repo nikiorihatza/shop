@@ -13,8 +13,6 @@ import '../model/product.dart';
 class CartList extends StatelessWidget {
   CartList({super.key});
 
-  static double totalprice = 0;
-
   @override
   Widget build(BuildContext context) {
     var shoppingCartProvider = Provider.of<CartProvider>(context, listen: true);
@@ -28,7 +26,7 @@ class CartList extends StatelessWidget {
           ),
           Lottie.network(
               'https://assets3.lottiefiles.com/private_files/lf30_aprp5fnm.json',
-            height: 500
+            height: 350
           )
         ],
       );
@@ -37,7 +35,6 @@ class CartList extends StatelessWidget {
       child: ListView.builder(
         itemCount: shoppingCart.length,
         itemBuilder: (BuildContext context, int index) {
-          totalprice += shoppingCart.keys.elementAt(index).price;
           return Card(
             child: CartProductWidget(product: shoppingCart.keys.elementAt(index), amount: shoppingCart.values.elementAt(index))
           );
@@ -55,13 +52,45 @@ class CartProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Navigator.of(context).push(createRouteToProduct(product));
-      },
-      leading: Image.asset(product.image),
-      title: Text(product.name),
-      trailing: Text((product.price * amount).toString()),
+    return Card(
+      margin: EdgeInsets.all(8.0),
+      elevation: 4.0,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              product.name,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Price: \$${product.price.toStringAsFixed(2)}',
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            Text(
+              'Quantity: ${amount}',
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Subtotal: \$${(product.price * amount).toStringAsFixed(2)}',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

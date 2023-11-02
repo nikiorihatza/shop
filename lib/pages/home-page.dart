@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pos_4ahif_shop/pages/category-page.dart';
 import 'package:pos_4ahif_shop/widgets/recommended-products-widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,7 +49,11 @@ class HomePage extends StatelessWidget {
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => CategoryPage(title:"Smartphones", categorynum: 2))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent

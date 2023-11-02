@@ -8,10 +8,17 @@ import 'package:readmore/readmore.dart';
 
 import '../model/product.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   Product product;
 
   ProductPage({super.key, required this.product});
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  int? amount = 1; //default
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +39,7 @@ class ProductPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: const Color(0xffffffff)),
                 child: Image.asset(
-                  product.image,
+                  widget.product.image,
                   cacheWidth: 300,
                 ),
               ),
@@ -41,7 +48,7 @@ class ProductPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
               child: Text(
-                product.name,
+                widget.product.name,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22
@@ -52,7 +59,7 @@ class ProductPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 10, 0, 0),
               child: Text(
-                product.price.toString() + ' €',
+                '${widget.product.price} €',
                 style: const TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 18
@@ -74,8 +81,8 @@ class ProductPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 10, 0, 0),
               child: ReadMoreText(
-                product.description,
-                colorClickableText: Color.fromARGB(255, 130, 93, 247),
+                widget.product.description,
+                colorClickableText: const Color.fromARGB(255, 130, 93, 247),
                 style: const TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 16
@@ -88,23 +95,43 @@ class ProductPage extends StatelessWidget {
                 width: double.maxFinite,
                 height: 70,
                 padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    cartProvider.addToCart(product);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 38, 38, 38),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)
-                      )
-                  ),
-                  child: const Icon(
-                    CupertinoIcons.shopping_cart
-                  ),
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        cartProvider.addToCart(widget.product, amount!);
+                        amount = 1;
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(110, 5, 110, 5),
+                        backgroundColor: const Color.fromARGB(255, 38, 38, 38),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Icon(CupertinoIcons.shopping_cart),
+                    ),
+                    DropdownButton<int>(
+                      value: amount,
+                      onChanged: (int? value) {
+                        // This is called when the user selects an item.
+                        setState(() {
+                          amount = value!;
+                        });
+                      },
+                      items: [1,2,3,4,5,6,7,8,9,10].map<DropdownMenuItem<int>>((int value) {
+                        return DropdownMenuItem<int>(
+                          value: value,
+                          child: Text(value.toString()),
+                        );
+                      }).toList(),
+                    )
+                  ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

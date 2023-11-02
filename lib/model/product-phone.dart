@@ -6,6 +6,7 @@ class ProductPhone {
 
   int id;
   String name;
+  String producer;
   double baseprice;
   String description;
   String image;
@@ -15,10 +16,12 @@ class ProductPhone {
   int rating;
   int category;
   bool favorited;
+  int inStock;
 
   ProductPhone({
     required this.id,
     required this.name,
+    required this.producer,
     required this.baseprice,
     required this.description,
     required this.image,
@@ -27,7 +30,8 @@ class ProductPhone {
     required this.prices,
     required this.rating,
     required this.category,
-    required this.favorited
+    required this.favorited,
+    required this.inStock,
   });
 
   @override
@@ -40,17 +44,18 @@ class ProductPhone {
 
   Product toProduct() {
     return Product(
-        id: this.id,
-        name: this.name,
-        price: this.baseprice,
-        description: this.description,
-        image: this.image,
+        id: id,
+        name: name,
+        producer: producer,
+        price: baseprice,
+        description: description,
+        image: image,
         storage: '',
         color: '',
-        rating: this.rating,
-        category: this.category,
-        favorited: this.favorited,
-        categroisedObject: this
+        rating: rating,
+        category: category,
+        favorited: favorited,
+        inStock: inStock
     );
   }
 }

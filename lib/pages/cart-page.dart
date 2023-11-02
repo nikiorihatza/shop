@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pos_4ahif_shop/model/order.dart';
 import 'package:pos_4ahif_shop/widgets/cart.dart';
+import 'package:provider/provider.dart';
+
+import '../model/product.dart';
+import '../provider/cart-provider.dart';
 
 class CartPage extends StatelessWidget {
   String title = "CART";
@@ -9,6 +14,10 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var shoppingCartProvider = Provider.of<CartProvider>(context, listen: true);
+    Map<Product,int> shoppingCart = shoppingCartProvider.cart;
+    double totalprice = shoppingCartProvider.getTotalPrice();
+
     return Column(
       children: [
         Padding(
@@ -19,17 +28,13 @@ class CartPage extends StatelessWidget {
           ),
         ),
         CartList(),
-        Row(
-          children: [
-            Container(
-                alignment: Alignment.bottomLeft,
-                child: Text('Total: ')
-            ),
-            Container(
-              alignment: Alignment.bottomRight,
-                child: Text('' + CartList.totalprice.toString() + ' €'),
-            )
-          ],
+        Container(
+          margin: EdgeInsets.fromLTRB(10, 20, 0, 20),
+          child: Row(
+            children: [
+              Text("Total: ${totalprice}", style: TextStyle(fontWeight: FontWeight.bold))
+            ],
+          ),
         ),
         Expanded(
           child: Align(

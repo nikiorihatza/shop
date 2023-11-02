@@ -42,7 +42,9 @@ class RecommendedProductWidget extends StatelessWidget {
       storageVariations: [128, 256, 512, 1026],
       rating: 4,
       category: 2,
-      favorited: false);
+      favorited: false,
+      producer: 'Apple',
+      inStock: 50);
 
   ProductPhone randomProduct2 = ProductPhone(
       id: 1002,
@@ -81,7 +83,9 @@ class RecommendedProductWidget extends StatelessWidget {
       },
       rating: 4,
       category: 2,
-      favorited: false
+      favorited: false,
+      producer: 'Apple',
+      inStock: 20
   );
 
 
@@ -156,7 +160,7 @@ class RecommendedProductWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(25, 12, 0, 0),
                   child: Text(
-                    ('${randomProduct.price}€'),
+                    ("${randomProduct.price.toStringAsFixed(2)} €"),
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold
