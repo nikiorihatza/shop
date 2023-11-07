@@ -31,12 +31,13 @@ class CartList extends StatelessWidget {
         ],
       );
     }
-    return Expanded(
+    return Container(
+      height: 400, // Set the desired height here
       child: ListView.builder(
         itemCount: shoppingCart.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            child: CartProductWidget(product: shoppingCart.keys.elementAt(index), amount: shoppingCart.values.elementAt(index))
+              child: CartProductWidget(product: shoppingCart.keys.elementAt(index), amount: shoppingCart.values.elementAt(index))
           );
         },
       ),

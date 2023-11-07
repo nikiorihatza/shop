@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: GNav(
           gap: 8,
           selectedIndex: _selectedIndex,

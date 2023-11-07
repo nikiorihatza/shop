@@ -43,9 +43,9 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                          color: Color.fromRGBO(0, 0, 0, 230)
+                          color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
@@ -65,13 +65,17 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                          color: Color.fromRGBO(0, 0, 0, 230)
+                          color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategoryPage(title:"TVs", categorynum: 1))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent
@@ -83,13 +87,17 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                          color: Color.fromRGBO(0, 0, 0, 230)
+                          color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategoryPage(title:"Notebook", categorynum: 3))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent
@@ -101,13 +109,17 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                          color: Color.fromRGBO(0, 0, 0, 230)
+                          color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategoryPage(title:"PC", categorynum: 4))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent
@@ -119,13 +131,17 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                        color: Color.fromRGBO(0, 0, 0, 230)
+                        color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategoryPage(title:"Gaming", categorynum: 5))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent
@@ -137,13 +153,17 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                          color: Color.fromRGBO(0, 0, 0, 230)
+                          color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategoryPage(title:"Sound", categorynum: 6))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent
@@ -155,13 +175,17 @@ class HomePage extends StatelessWidget {
                 Container(
                   width: 160.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
                       border: Border.all(
-                          color: Color.fromRGBO(0, 0, 0, 230)
+                          color: const Color.fromRGBO(0, 0, 0, 230)
                       )
                   ),
                   child: ElevatedButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategoryPage(title:"Accessories", categorynum: 7))
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent
@@ -191,6 +215,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          RecommendedProductWidget(),
           RecommendedProductWidget(),
           RecommendedProductWidget()
         ],

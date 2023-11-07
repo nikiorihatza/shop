@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 
 AppBar returnSpookoAppBar() {
   return AppBar(
-    title: Image.asset('lib/assets/logo.jpeg', fit: BoxFit.cover, height: 50, alignment: Alignment.center,),
+    title: Center(
+      child: Image.asset(
+        'lib/assets/logo.jpeg',
+        fit: BoxFit.cover,
+        height: 50,
+      ),
+    ),
     backgroundColor: Colors.white,
     foregroundColor: Colors.white,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

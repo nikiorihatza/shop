@@ -13,6 +13,10 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   String title = "SEARCH";
 
+  /**
+   * This page is only getting finished, if the function is implemented in Java
+   */
+
   @override
   Widget build(BuildContext context) {
     return Column(

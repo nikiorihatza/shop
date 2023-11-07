@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pos_4ahif_shop/functions/routes.dart';
+import 'package:provider/provider.dart';
 
 import '../model/product-phone.dart';
 import '../model/product.dart';
+import '../provider/productdata-provider.dart';
 
 class RecommendedProductWidget extends StatelessWidget {
   ProductPhone randomProduct1 = ProductPhone(
@@ -107,8 +109,8 @@ class RecommendedProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    products.add(randomProduct1.toProduct());
-    products.add(randomProduct2.toProduct());
+    var productProvider = Provider.of<ProductDataProvider>(context, listen: true);
+    products = productProvider.products;
 
     var randomProduct = _getRandomProductFromList();
 
@@ -136,7 +138,7 @@ class RecommendedProductWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: const Color(0xffffffff)
                   ),
-                  child: Image.asset(
+                  child: Image.network(
                     randomProduct.image,
                     cacheWidth: 150,
                   ),
@@ -177,17 +179,11 @@ class RecommendedProductWidget extends StatelessWidget {
   }
 
   Product _getRandomProductFromList() {
-    var randomProduct = products[Random().nextInt(products.length)];
-
-    for (var product in selectedProducts) {
-      if (randomProduct == product) {
-        return _getRandomProductFromList();
-      } else {
-        selectedProducts.add(randomProduct);
-        return randomProduct;
-      }
+    if (products.isEmpty) {
+      throw Exception('The products list is empty.');
     }
 
-    return randomProduct;
+    final randomIndex = Random().nextInt(products.length);
+    return products[randomIndex];
   }
 }

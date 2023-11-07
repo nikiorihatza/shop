@@ -38,10 +38,30 @@ class _ProductPageState extends State<ProductPage> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: const Color(0xffffffff)),
-                child: Image.asset(
+                child: Image.network(
                   widget.product.image,
                   cacheWidth: 300,
                 ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.fromLTRB(30, 20, 0, 0),
+              child: Row(
+                children: [
+                  // You can customize this part to display the rating with stars
+                  const Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  Text(
+                    widget.product.rating.toStringAsFixed(1), // Assuming you have a rating property
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
@@ -79,7 +99,7 @@ class _ProductPageState extends State<ProductPage> {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.fromLTRB(30, 10, 0, 0),
+              padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
               child: ReadMoreText(
                 widget.product.description,
                 colorClickableText: const Color.fromARGB(255, 130, 93, 247),

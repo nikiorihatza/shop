@@ -36,9 +36,10 @@ class _ProductWidgetState extends State<ProductWidget> {
             Container(
               width: 100,
               height: 100,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(widget.product.image),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8), // You can adjust the border radius as needed
+                child: Image.network(
+                  widget.product.image, // Replace with your image URL
                   fit: BoxFit.cover,
                 ),
               ),
@@ -62,7 +63,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${widget.product.price.toStringAsFixed(2)}',
+                          '\€ ${widget.product.price.toStringAsFixed(2)}',
                           style: const TextStyle(fontSize: 18),
                         ),
                         CupertinoButton(

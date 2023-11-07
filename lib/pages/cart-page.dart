@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pos_4ahif_shop/model/order.dart';
+import 'package:pos_4ahif_shop/pages/order-page.dart';
 import 'package:pos_4ahif_shop/widgets/cart.dart';
 import 'package:provider/provider.dart';
 
@@ -29,10 +30,14 @@ class CartPage extends StatelessWidget {
         ),
         CartList(),
         Container(
-          margin: EdgeInsets.fromLTRB(10, 20, 0, 20),
+          margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
           child: Row(
             children: [
-              Text("Total: ${totalprice}", style: TextStyle(fontWeight: FontWeight.bold))
+              Text("Total: ${totalprice.toStringAsFixed(2)} €", style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              )
+              )
             ],
           ),
         ),
@@ -45,7 +50,9 @@ class CartPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: ElevatedButton(
                 onPressed: () {
-
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => OrderPage())
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 38, 38, 38),
