@@ -10,9 +10,14 @@ import 'package:provider/provider.dart';
 
 import '../model/product.dart';
 
-class CartList extends StatelessWidget {
-  CartList({super.key});
+class CartList extends StatefulWidget {
+  const CartList({super.key});
 
+  @override
+  State<CartList> createState() => _CartListState();
+}
+
+class _CartListState extends State<CartList> {
   @override
   Widget build(BuildContext context) {
     var shoppingCartProvider = Provider.of<CartProvider>(context, listen: true);
@@ -31,8 +36,8 @@ class CartList extends StatelessWidget {
         ],
       );
     }
-    return Container(
-      height: 400, // Set the desired height here
+    return SizedBox(
+      height: 350, // Set the desired height here
       child: ListView.builder(
         itemCount: shoppingCart.length,
         itemBuilder: (BuildContext context, int index) {
@@ -46,15 +51,15 @@ class CartList extends StatelessWidget {
 }
 
 class CartProductWidget extends StatelessWidget {
-  Product product;
-  int amount;
+  final Product product;
+  final int amount;
 
-  CartProductWidget({super.key, required this.product, required this.amount});
+  const CartProductWidget({super.key, required this.product, required this.amount});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       elevation: 4.0,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -63,28 +68,28 @@ class CartProductWidget extends StatelessWidget {
           children: [
             Text(
               product.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'Price: \$${product.price.toStringAsFixed(2)}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
             Text(
               'Quantity: ${amount}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               'Subtotal: \$${(product.price * amount).toStringAsFixed(2)}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),

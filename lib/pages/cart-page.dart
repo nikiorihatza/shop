@@ -30,10 +30,10 @@ class CartPage extends StatelessWidget {
         ),
         CartList(),
         Container(
-          margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
+          margin: EdgeInsets.fromLTRB(25, 10, 0, 0),
           child: Row(
             children: [
-              Text("Total: ${totalprice.toStringAsFixed(2)} €", style: TextStyle(
+              Text("Total: \n ${totalprice.toStringAsFixed(2)} €", style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20
               )

@@ -9,7 +9,7 @@ class SupportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: returnNavigatorAppBar(),
+      appBar: returnNavigatorAppBar('Support'),
     );
   }
 }

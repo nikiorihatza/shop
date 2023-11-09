@@ -30,8 +30,10 @@ class CategoryPage extends StatelessWidget {
     var productProvider = Provider.of<ProductDataProvider>(context, listen: true);
     List<Product> productsCat = productProvider.getProductsByCategory(categorynum);
 
+    List<String> categoryTitles = ['TVs', 'Smartphones', 'Notebook', 'PC', 'Gaming', 'Sound', 'Accessories'];
+
     return Scaffold(
-      appBar: returnNavigatorAppBar(),
+      appBar: returnNavigatorAppBar(categoryTitles[categorynum - 1]),
       body: SingleChildScrollView(
         child: ListView.builder(
           itemCount: productsCat.length,

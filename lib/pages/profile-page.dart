@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pos_4ahif_shop/functions/login-functions.dart';
 import 'package:pos_4ahif_shop/functions/routes.dart';
+import 'package:pos_4ahif_shop/pages/login-page.dart';
+import 'package:provider/provider.dart';
+
+import '../model/user.dart';
+import '../provider/user-provider.dart';
 
 class ProfilePage extends StatelessWidget {
   String title = "PROFILE";
@@ -10,6 +15,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+    User user = userProvider.user;
+
     return Column(
       children: [
         Padding(
@@ -47,12 +55,14 @@ class ProfilePage extends StatelessWidget {
               shadowColor: Colors.transparent,
             ),
             child: ListTile(
-              leading: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset('lib/assets/profile-picture-example.jpeg'),
+              leading: Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.network('https://t3.ftcdn.net/jpg/05/57/20/16/360_F_557201692_P86sh0v8g00VseZacjBOOKJmGLSvEpQb.jpg'),
+                ),
               ),
               title: Text(
-                'Max Mustermann',
+                '${user.firstName} ${user.lastName}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold
                 ),
@@ -138,13 +148,14 @@ class ProfilePage extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
               onPressed: () {
-                signOut();
+                userProvider.user = User(id: 0, firstName: '', lastName: '', email: '', password: '', favorites: '', orders: '', currentCart: '');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
               style: ElevatedButton.styleFrom(
                 shadowColor: Colors.transparent,
                 backgroundColor: Colors.transparent
               ),
-              child: Text(
+              child: const Text(
                 'SIGN OUT',
                 style: TextStyle(
                     color: Colors.red

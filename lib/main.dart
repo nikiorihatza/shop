@@ -5,11 +5,13 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pos_4ahif_shop/pages/cart-page.dart';
 import 'package:pos_4ahif_shop/pages/home-page.dart';
 import 'package:pos_4ahif_shop/pages/login-page.dart';
+import 'package:pos_4ahif_shop/pages/mainview-page.dart';
 import 'package:pos_4ahif_shop/pages/profile-page.dart';
 import 'package:pos_4ahif_shop/pages/search-page.dart';
 import 'package:pos_4ahif_shop/provider/cart-provider.dart';
 import 'package:pos_4ahif_shop/provider/order-provider.dart';
 import 'package:pos_4ahif_shop/provider/productdata-provider.dart';
+import 'package:pos_4ahif_shop/provider/user-provider.dart';
 import 'package:pos_4ahif_shop/widgets/UI/spooko-appbar.dart';
 import 'package:provider/provider.dart';
 
@@ -26,14 +28,15 @@ class ShopApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
         ChangeNotifierProvider<OrderProvider>(create: (_) => OrderProvider()),
-        ChangeNotifierProvider<ProductDataProvider>(create: (_) => ProductDataProvider())
+        ChangeNotifierProvider<ProductDataProvider>(create: (_) => ProductDataProvider()),
+        ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider(),)
       ],
       child: MaterialApp(
         title: 'Spooko',
         theme: ThemeData(
           backgroundColor: Colors.white
         ),
-        home: MyHomePage(title: 'Home - Spooko', loggedIn: true),
+        home: MyHomePage(loggedIn: false),
         debugShowCheckedModeBanner: false,
       ),
     );
@@ -41,18 +44,16 @@ class ShopApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  final String title;
-  bool loggedIn;
+  final String title = 'Home - Spooko';
+  final bool loggedIn;
 
-  MyHomePage({super.key, required this.title, required this.loggedIn});
+  MyHomePage({super.key, required this.loggedIn});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool loggedIn = true;
-
   final _pages = <Widget>[
     HomePage(),
     CartPage(),
@@ -64,44 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool loggedIn = widget.loggedIn;
     if (loggedIn == false) {
+      //loggedIn = true;
+      //widget.loggedIn = true;
       return LoginPage();
     }
-    return Scaffold(
-      appBar: returnSpookoAppBar(),
-      body: Center(
-        child: _pages.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        child: GNav(
-          gap: 8,
-          selectedIndex: _selectedIndex,
-          onTabChange: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          tabs: const [
-            GButton(
-              icon: CupertinoIcons.home,
-              text: 'Home',
-            ),
-            GButton(
-              icon: CupertinoIcons.shopping_cart,
-              text: 'Cart',
-            ),
-            GButton(
-              icon: CupertinoIcons.search,
-              text: 'Search',
-            ),
-            GButton(
-              icon: CupertinoIcons.person,
-              text: 'Profile',
-            )
-          ],
-        ),
-      ),
-    );
+    return MainView();
   }
 }

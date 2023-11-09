@@ -1,10 +1,6 @@
 enum OrderStatus {
-  pending,
-  processing,
+  placed,
   shipped,
-  delieverd,
-  cancelled,
-  onhold,
-  returned,
-  refunded
+  delievery,
+  delievered
 }

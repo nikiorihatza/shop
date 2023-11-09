@@ -25,7 +25,7 @@ class _ProductPageState extends State<ProductPage> {
     var cartProvider = Provider.of<CartProvider>(context, listen: true);
 
     return Scaffold(
-      appBar: returnNavigatorAppBar(),
+      appBar: returnNavigatorAppBar(''),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(

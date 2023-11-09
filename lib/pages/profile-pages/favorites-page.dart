@@ -12,7 +12,7 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: returnNavigatorAppBar(),
+      appBar: returnNavigatorAppBar('Favorites'),
     );
   }
 }

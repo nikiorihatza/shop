@@ -1,3 +1,3 @@
-bool signOut() {
-  return false;
+void signOut() {
+
 }
