@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../model/order.dart';
 import '../../model/user.dart';
+import '../../provider/order-provider.dart';
 
 class OrderDataInputPage extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _OrderDataInputPageState extends State<OrderDataInputPage> {
     // Provider
     var userProvider = Provider.of<UserProvider>(context, listen: true);
     var shoppingCartProvider = Provider.of<CartProvider>(context, listen: true);
+    var orderProvider = Provider.of<OrderProvider>(context, listen: true);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -145,52 +147,92 @@ class _OrderDataInputPageState extends State<OrderDataInputPage> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 80,
-                    padding: const EdgeInsets.all(20),
-                    child: ElevatedButton(
-                        onPressed: (){
-                          print('Pressed Register');
-                          String firstName = orderFirstNameController.text;
-                          String lastName = orderLastNameController.text;
-                          String email = orderEmailController.text;
-                          String deliveryAddress = orderDeliveryAddress.text;
-                          String recieptAddress = orderRecieptAddress.text;
-                          late User orderUser;
+                  Column(
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: double.maxFinite,
+                            height: 70,
+                            padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(255, 38, 38, 38),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      minimumSize: Size(double.maxFinite, 50),
+                                    ),
+                                    child: const Text(
+                                      'Back',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10), // Add spacing between the buttons
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: (){
+                                      print('Pressed Register');
+                                      String firstName = orderFirstNameController.text;
+                                      String lastName = orderLastNameController.text;
+                                      String email = orderEmailController.text;
+                                      String deliveryAddress = orderDeliveryAddress.text;
+                                      String recieptAddress = orderRecieptAddress.text;
+                                      late User orderUser;
 
-                          List<User> users = userProvider.users;
+                                      List<User> users = userProvider.users;
 
-                          for (User user in users) {
-                            if (user.email == email) {
-                              orderUser = user;
-                            }
-                          }
+                                      for (User user in users) {
+                                        if (user.email == email) {
+                                          orderUser = user;
+                                        }
+                                      }
 
-                          Order order = Order(
-                              date: DateTime.now(),
-                              user: orderUser,
-                              deliveryAddress: deliveryAddress,
-                              receiptAddress: recieptAddress,
-                              boughtProducts: shoppingCartProvider.cart,
-                              status: OrderStatus.placed
-                          );
+                                      Order order = Order(
+                                          date: DateTime.now(),
+                                          user: orderUser,
+                                          deliveryAddress: deliveryAddress,
+                                          receiptAddress: recieptAddress,
+                                          boughtProducts: shoppingCartProvider.cart,
+                                          status: OrderStatus.placed
+                                      );
 
-                          orderFirstNameController.clear();
-                          orderLastNameController.clear();
-                          orderDeliveryAddress.clear();
-                          orderRecieptAddress.clear();
-                          orderEmailController.clear();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shadowColor: Colors.white,
-                            backgroundColor: const Color.fromARGB(255, 38, 38, 38),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)
-                            )
+
+
+                                      orderFirstNameController.clear();
+                                      orderLastNameController.clear();
+                                      orderDeliveryAddress.clear();
+                                      orderRecieptAddress.clear();
+                                      orderEmailController.clear();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(255, 38, 38, 38),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      minimumSize: Size(double.maxFinite, 50),
+                                    ),
+                                    child: const Text(
+                                      'Next',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        child: const Text('ORDER')
-                    ),
+                      )
+                    ],
                   ),
                 ],
               ),
